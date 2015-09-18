@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <title>Squatchin</title>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Vendor css -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <!-- Squatchin css -->
+        <link rel="stylesheet" href="styles/base.css"/>
+
+    </head>
+
+    <body>
+
+        <div id="map" class="fullscreen-map"></div>
+
+        <!-- Vendor Scripts -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/d3/d3.js"></script>
+        <script src="bower_components/topojson/topojson.js"></script>
+        <script src="bower_components/momentjs/moment.js"></script>
+
+        <!-- Page Scripts -->
+        <script src="scripts/d3.geo.projection.v0.min.js"></script>
+        <script src="scripts/map.js"></script>
+        <script>
+            var map = new SasquatchMap('map');
+            map.initMap();
+        </script>
+
+    </body>
+</html>

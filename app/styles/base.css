@@ -1,0 +1,30 @@
+body, html {
+    /*background: #101316;*/
+    background: #000306;
+    height: 100%;
+}
+
+body {
+    color: #f3f6f9;
+    font-size: 22px;
+}
+
+.fullscreen-map {
+    height: 100%;
+    width: 100%;
+    margin: auto;
+}
+
+.land {
+    stroke: #666;
+    fill: #333;
+}
+
+.pin {
+    fill: #ffff66;
+    fill-opacity: 0.5;
+}
+.graticule {
+    stroke: #444;
+    stroke-width: 1px;
+}

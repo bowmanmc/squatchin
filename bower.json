@@ -1,0 +1,13 @@
+{
+  "name": "squatchin",
+  "version": "1.0.0",
+  "dependencies": {
+    "momentjs": "*",
+    "d3": "*",
+    "jquery": "*",
+    "bootstrap-sass": "*",
+    "fontawesome": "*"
+  },
+  "devDependencies": {
+  }
+}
