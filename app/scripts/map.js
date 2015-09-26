@@ -61,7 +61,7 @@ function SasquatchMap(elementId) {
 
     this.getOutlines = function() {
         var deferred = $.Deferred();
-        d3.json('maps/na.countries.json', function(error, response) {
+        d3.json('maps/canusa-10m.geojson', function(error, response) {
             deferred.resolve(response);
         });
         return deferred.promise();
@@ -74,15 +74,15 @@ function SasquatchMap(elementId) {
             'lon': -90,
             'lat': 80
         };
-        var r = [center['lon'] * -1, center['lat'] * -1];
+        var r = [center.lon * -1, center.lat * -1];
         console.log('Rotate to: ' + JSON.stringify(r));
         // Start the projection from defaults (looking at Ohio)
         map.projection.scale(1).translate([0, 0]).rotate(r);
 
         var b = map.path.bounds(data),
-            s = 1 / Math.max((b[1][0] - b[0][0]) / map.width, (b[1][1] - b[0][1]) / map.height),
-            //t = [(map.width - s * (b[1][0] + b[0][0])) / 2, (map.height - s * (b[1][1] + b[0][1])) / 2];
-            t = [(map.width / 2), (map.height - s * (b[1][1] + b[0][1])) / 2];
+            s = 0.98 / Math.max((b[1][0] - b[0][0]) / map.width, (b[1][1] - b[0][1]) / map.height),
+            t = [(map.width - s * (b[1][0] + b[0][0])) / 2, (map.height - s * (b[1][1] + b[0][1])) / 2];
+            //t = [(map.width / 2), (map.height - s * (b[1][1] + b[0][1])) / 2];
 
         console.log('Bounds: ' + JSON.stringify(b));
         console.log('Scale: ' + JSON.stringify(s));
@@ -100,13 +100,28 @@ function SasquatchMap(elementId) {
             ])
             .step([5, 5]); // how many degrees between graticule lines
 
+        var features = [];
+        var i, feature;
+        for (i = 0; i < data.features.length; i++) {
+            feature = data.features[i];
+            console.log(feature.properties.SOV_A3);
+            if (feature.properties.SOV_A3 !== 'MEX' &&
+                feature.properties.ADMIN !== 'Puerto Rico' &&
+                feature.properties.ADMIN !== 'United States Virgin Islands'
+            ) {
+                features.push(feature);
+                console.log('    ' + JSON.stringify(feature.properties));
+            }
+        }
+
         map.gt.append('path')
             .datum(graticule)
             .attr('class', 'graticule')
             .attr('d', map.path);
 
         map.land.selectAll('path')
-            .data(data.features)
+            //.data(data.features)
+            .data(features)
             .enter().append('path')
                 .attr({
                     'class': 'land',
@@ -126,4 +141,4 @@ function SasquatchMap(elementId) {
         //         });
     };
 
-};
+}
