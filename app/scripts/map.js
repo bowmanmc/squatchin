@@ -153,45 +153,18 @@ function SasquatchMap(elementId) {
             ])
             .step([5, 5]); // how many degrees between graticule lines
 
-        var features = [];
-        var i, feature;
-        for (i = 0; i < data.features.length; i++) {
-            feature = data.features[i];
-            console.log(feature.properties.SOV_A3);
-            if (feature.properties.SOV_A3 !== 'MEX' &&
-                feature.properties.ADMIN !== 'Puerto Rico' &&
-                feature.properties.ADMIN !== 'United States Virgin Islands'
-            ) {
-                features.push(feature);
-                console.log('    ' + JSON.stringify(feature.properties));
-            }
-        }
-
         map.grid.append('path')
             .datum(graticule)
             .attr('class', 'graticule')
             .attr('d', map.path);
 
         map.land.selectAll('path')
-            //.data(data.features)
-            .data(features)
+            .data(data.features)
             .enter().append('path')
                 .attr({
                     'class': 'land',
                     'd': map.path
                 });
-
-        // map.markers.selectAll('circle')
-        //     .data([center])
-        //     .enter().append('circle')
-        //         .attr('r', 3)
-        //         .attr('class', 'pin')
-        //         .attr('transform', function(d) {
-        //             return "translate(" + map.projection([
-        //                 d.lon,
-        //                 d.lat
-        //             ]) + ")"
-        //         });
     };
 
 }
