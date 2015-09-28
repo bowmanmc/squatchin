@@ -20,13 +20,26 @@ function SasquatchMap(elementId) {
 
         map.svg = d3.select(map.divSelector).append('svg')
             .attr({
+                'id': 'map',
                 'width': map.width,
                 'height': map.height
             });
 
-        map.gt = map.svg.append('g');
-        map.land = map.svg.append('g');
-        map.markers = map.svg.append('g');
+        map.grid = map.svg.append('g').attr({
+            'id': 'grid'
+        });
+        map.land = map.svg.append('g').attr({
+            'id': 'land'
+        });
+        map.classc = map.svg.append('g').attr({
+            'id': 'class-c'
+        });
+        map.classb = map.svg.append('g').attr({
+            'id': 'class-b'
+        });
+        map.classa = map.svg.append('g').attr({
+            'id': 'class-a'
+        });
 
         map.getOutlines().then(function(data) {
             map.drawOutlines(data);
@@ -46,11 +59,51 @@ function SasquatchMap(elementId) {
 
     this.drawSightings = function(data) {
         console.log('Drawing ' + data.length + ' sightings...');
-        map.markers.selectAll('circle')
-            .data(data)
+        var i, item;
+        var len = data.length;
+        var a = [];
+        var b = [];
+        var c = [];
+        for (i = 0; i < len; i++) {
+            item = data[i];
+            if (item.class === 'A') {
+                a.push(item);
+            }
+            else if (item.class === 'B') {
+                b.push(item);
+            }
+            else {
+                c.push(item);
+            }
+        }
+
+        map.classc.selectAll('circle')
+            .data(c)
             .enter().append('circle')
                 .attr('r', 1)
-                .attr('class', 'pin')
+                .attr('class', 'pin pin-c')
+                .attr('transform', function(d) {
+                    return "translate(" + map.projection([
+                        d.longitude,
+                        d.latitude
+                    ]) + ")";
+                });
+        map.classb.selectAll('circle')
+            .data(b)
+            .enter().append('circle')
+                .attr('r', 1)
+                .attr('class', 'pin pin-b')
+                .attr('transform', function(d) {
+                    return "translate(" + map.projection([
+                        d.longitude,
+                        d.latitude
+                    ]) + ")";
+                });
+        map.classa.selectAll('circle')
+            .data(a)
+            .enter().append('circle')
+                .attr('r', 1)
+                .attr('class', 'pin pin-a')
                 .attr('transform', function(d) {
                     return "translate(" + map.projection([
                         d.longitude,
@@ -114,7 +167,7 @@ function SasquatchMap(elementId) {
             }
         }
 
-        map.gt.append('path')
+        map.grid.append('path')
             .datum(graticule)
             .attr('class', 'graticule')
             .attr('d', map.path);

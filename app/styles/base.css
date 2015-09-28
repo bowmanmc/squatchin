@@ -21,7 +21,19 @@ body {
 }
 
 .pin {
+    /*fill: #ffff66;
+    fill-opacity: 0.5;*/
+}
+.pin-a {
     fill: #ffff66;
+    fill-opacity: 0.5;
+}
+.pin-b {
+    fill: #66ffff;
+    fill-opacity: 0.5;
+}
+.pin-c {
+    fill: #ff66ff;
     fill-opacity: 0.5;
 }
 .graticule {
