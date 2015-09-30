@@ -15,7 +15,6 @@ function SasquatchMap(elementId) {
         console.log('Making map size: ' + map.width + 'x' + map.height);
 
         map.projection = d3.geo.airy();
-        //map.projection = d3.geo.conicConformal();
         map.path = d3.geo.path().projection(map.projection);
 
         map.svg = d3.select(map.divSelector).append('svg')
@@ -81,7 +80,7 @@ function SasquatchMap(elementId) {
             .data(c)
             .enter().append('circle')
                 .attr('r', 1)
-                .attr('class', 'pin pin-c')
+                .attr('class', 'pin pin-a')
                 .attr('transform', function(d) {
                     return "translate(" + map.projection([
                         d.longitude,
@@ -92,7 +91,7 @@ function SasquatchMap(elementId) {
             .data(b)
             .enter().append('circle')
                 .attr('r', 1)
-                .attr('class', 'pin pin-b')
+                .attr('class', 'pin pin-a')
                 .attr('transform', function(d) {
                     return "translate(" + map.projection([
                         d.longitude,
@@ -129,7 +128,6 @@ function SasquatchMap(elementId) {
         };
         var r = [center.lon * -1, center.lat * -1];
         console.log('Rotate to: ' + JSON.stringify(r));
-        // Start the projection from defaults (looking at Ohio)
         map.projection.scale(1).translate([0, 0]).rotate(r);
 
         var b = map.path.bounds(data),
