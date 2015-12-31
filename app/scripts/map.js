@@ -41,10 +41,10 @@ function SasquatchMap(elementId) {
             'id': 'class-a'
         });
 
-        map.getOutlines().then(function(data) {
-            map.drawOutlines(data);
-            map.getSightings().then(function(data) {
-                map.drawSightings(data);
+        map.getOutlines().then(function(outlines) {
+            map.drawOutlines(outlines);
+            map.getSightings().then(function(sightings) {
+                map.drawSightings(sightings);
             });
         });
     };
