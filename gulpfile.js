@@ -89,11 +89,11 @@ gulp.task('browser-sync', function() {
     browserSync({
         port: 9000,
         files: [
-            'app/*.html',
+            'app/**/*.html',
+            'app/**/*.js',
+            'app/**/*.css',
             'app/fonts/*',
-            'app/images/*',
-            'app/scripts/*.js',
-            'app/styles/*.min.css'
+            'app/images/*'
         ],
         watchOptions: {
             ignoreInitial: true
