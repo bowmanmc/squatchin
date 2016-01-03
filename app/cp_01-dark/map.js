@@ -15,7 +15,6 @@ function SasquatchMap(elementId) {
         console.log('Making map size: ' + map.width + 'x' + map.height);
 
         map.projection = d3.geo.airy();
-        //map.projection = d3.geo.mercator();
         map.path = d3.geo.path().projection(map.projection);
 
         map.svg = d3.select(map.divSelector).append('svg')
@@ -132,13 +131,11 @@ function SasquatchMap(elementId) {
         var r = [center.lon * -1, center.lat * -1];
         console.log('Rotate to: ' + JSON.stringify(r));
         map.projection.scale(1).translate([0, 0]).rotate(r);
-        //map.projection.scale(1).translate([0, 0]);
 
         var b = map.path.bounds(data),
             s = 0.98 / Math.max((b[1][0] - b[0][0]) / map.width, (b[1][1] - b[0][1]) / map.height),
             t = [(map.width - s * (b[1][0] + b[0][0])) / 2, (map.height - s * (b[1][1] + b[0][1])) / 2];
             //t = [(map.width / 2), (map.height - s * (b[1][1] + b[0][1])) / 2];
-
         map.projection.scale(s).translate(t);
 
         var graticule = d3.geo.graticule()
