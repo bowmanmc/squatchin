@@ -135,7 +135,7 @@ function SasquatchMap(elementId) {
         var b = map.path.bounds(data),
             s = 0.98 / Math.max((b[1][0] - b[0][0]) / map.width, (b[1][1] - b[0][1]) / map.height),
             t = [(map.width - s * (b[1][0] + b[0][0])) / 2, (map.height - s * (b[1][1] + b[0][1])) / 2];
-            //t = [(map.width / 2), (map.height - s * (b[1][1] + b[0][1])) / 2];
+
         map.projection.scale(s).translate(t);
 
         var graticule = d3.geo.graticule()
