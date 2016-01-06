@@ -57,6 +57,11 @@ function SasquatchMap(elementId) {
         return deferred.promise();
     };
 
+    this.handleHover = function(d) {
+        console.log('Hover on: ' + JSON.stringify(d));
+        $('#details .description').text(d.description);
+    };
+
     this.drawSightings = function(data) {
         console.log('Drawing ' + data.length + ' sightings...');
         var i, item;
@@ -87,6 +92,9 @@ function SasquatchMap(elementId) {
                         d.longitude,
                         d.latitude
                     ]) + ")";
+                })
+                .on('mouseover', function(d) {
+                    map.handleHover(d);
                 });
         map.classb.selectAll('circle')
             .data(b)
@@ -98,6 +106,9 @@ function SasquatchMap(elementId) {
                         d.longitude,
                         d.latitude
                     ]) + ")";
+                })
+                .on('mouseover', function(d) {
+                    map.handleHover(d);
                 });
         map.classa.selectAll('circle')
             .data(a)
@@ -109,6 +120,9 @@ function SasquatchMap(elementId) {
                         d.longitude,
                         d.latitude
                     ]) + ")";
+                })
+                .on('mouseover', function(d) {
+                    map.handleHover(d);
                 });
     };
 

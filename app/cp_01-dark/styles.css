@@ -1,12 +1,13 @@
 body, html {
     /*background: #101316;*/
     background: #000306;
+    font-family: sans-serif;
+    font-size: 12px;
     height: 100%;
 }
 
 body {
     color: #f3f6f9;
-    font-size: 22px;
 }
 
 .fullscreen-map {
@@ -15,14 +16,28 @@ body {
     margin: auto;
 }
 
+.details {
+    position: absolute;
+    background: #eee;
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid #fff;
+    border-radius: 0.25em;
+    bottom: 1em;
+    color: #333;
+    min-height: 200px;
+    left: 1em;
+    min-width: 15%;
+    max-width: 15%;
+    padding: 0.5em;
+}
+
 .land {
     stroke: #666;
     fill: #333;
 }
 
 .pin {
-    /*fill: #ffff66;
-    fill-opacity: 0.5;*/
+    cursor: pointer;
 }
 .pin-a {
     fill: #ffff66;
